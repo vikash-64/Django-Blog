@@ -145,22 +145,59 @@ form .signup-link a:hover{
  width: 100%;
  margin-top: -105px;
 }
+.fg{
+  
+  display: block;
+  width: 100%;
+  height: 51px;
+  background: #4E9CAF;
+  padding: 14px;
+  text-align: center;
+  border-radius: 37px;
+  color: white;
+  font-weight: bold;
+  line-height: 25px;
+  margin-top: 17px;
+  
+}
+.alert {
+  padding: 20px;
+  background-color: #779ff5;;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 
     </style>
 
   </head>
 
   <body>
+
+    {% for message in messages %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      <strong></strong>{{message}}
+    </div>
+    {%endfor%}
     
     <div class="container">
  
       <div class="wrapper">
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-          <strong>{{message}}</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {%endfor%}
+       
         <div class="title"><span>Sign Up</span></div>
         <form method='POST' action="{% url 'register' %}">
             {% csrf_token %} 

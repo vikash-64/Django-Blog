@@ -172,23 +172,85 @@ input[type=checkbox]:checked ~ .menu{
     line-height: 25px;
 }
 
-#gv{
+.gv{
   
+    width: 100%;
+    /* height: 50%; */
+    padding: 49px;
+    margin-top: -45px;
+    margin-left: 4px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+  margin-top: 110px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+ .fakeimg {
+  background-color: #aaa;
   width: 100%;
-    /* height: 50%; */
-    padding: 49px;
-    margin-top: -76px;
-    margin-left: 1px;
+  padding: 20px;
+} 
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
 }
 
-.fakeimg {
-     width: 100%;
-    /* height: 50%; */
-    padding: 49px;
-    margin-top: -76px;
-    margin-left: 1px;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -230,20 +292,30 @@ input[type=checkbox]:checked ~ .menu{
     </div>
     </ul>
     </nav>
-  
-  <div class="row" id="oo">
-  <div class="fakeimg">        
-    {% if blog.cover %}       
-    <img src="{{ blog.cover.url }}" id="gv">
-    {% else %}
-    <!-- <img src="url or path to some your default image"> -->
-    <h4>Helllo vikash</h4>
-    {% endif %}</div>
-  <center><div id="h"><h2>{{blog.title}}</h2> </div></center>
-  <div><h5>Post Date: {{blog.date}}</h5></div>
-  <p>{{blog.description}}</p>
-  <h3>Author: {{blog.user_id}}</h3>
-  <div class="card">
+    <div class="header">
+      <h2>{{blog.title}}</h2>
+    </div>
+    
+    <div class="row">
+      <div class="leftcolumn">
+        <div class="card">
+          
+          <h5>Post Date: {{blog.date}}</h5><br>
+          <h5>Author: {{blog.user_id}}</h5><br>
+          
+          <!-- <div class="gv" ></div> -->
+          {% if blog.cover %}
+          <img src="{{ blog.cover.url }}" class="gv" ><br>
+          {% else %}
+          <h4>Image</h4><br>
+          {% endif %}
+          <br>
+          <p>{{blog.description|safe}}</p>
+          </div>
+        </div>
+        
+     
+    
 
 </body>
 </html>

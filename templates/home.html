@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,24 +17,7 @@
 
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-.alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    height: 48px;
-  
-}
-.close {
-    float: right;
-    font-size: 49px;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: .2;
-    margin-right: 11px;
-}
+
 .navbar {
  display: flex;
  align-items: center;
@@ -56,23 +39,41 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 #op{
   word-wrap: break-word;
-  height: 3em;
+  height: 0em;
   overflow-y: hidden;
 
 }
+.alert {
+  padding: 20px;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="w3-light-grey">
 
 <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content, except for the footer in this example -->
 {% for message in messages %}
-<div class="alert alert-success alert-dismissible">
-  <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong >Success!</strong>{{message}}
-</div> 
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';" >&times;</span> 
+  <strong>Success!</strong>{{message}}
+</div>
 {%endfor%}
 <div class="w3-content" style="max-width:1400px">
 
@@ -136,7 +137,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   <!-- Posts -->
   <div class="w3-card w3-margin">
     <div class="w3-container w3-padding">
-      <h4>Connect me</h4>
+      <h4>Connect with me</h4>
     </div>
     <ul class="w3-ul w3-hoverable w3-white">
 
@@ -187,9 +188,10 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <!-- Footer -->
 <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-  <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+
+  <big><a href="/contact_form"> Contact me</a></big>
+  <br><br>
+  <big><a href="mailto:vikash400001@gmail.com">Email : vikash400001@gmail.com</a></p></big>
 </footer>
 
 </body>

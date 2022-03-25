@@ -156,7 +156,8 @@ input[type=checkbox]:checked ~ .menu{
   <!-- user name display -->
   {% if user.is_authenticated %}
     <li><a class="fg" href="/">{{request.user}}</a></li>
-    <li>  <a class="fg" href="/post_blog" style="background-color: rgb(241, 205, 87);">Post Blog</a></li>
+    <li>  <a class="fg" href="/post_blog" style="background-color:lightblue;">Post Blog</a></li>
+    <li><a class="fg" href="/change_password">Change Password</a></li>
     <li> <a class="fg" href="/user_logout" style="background-color: red;">Logout</a></li>
     
   {% else %}
@@ -168,6 +169,9 @@ input[type=checkbox]:checked ~ .menu{
  </ul>
  </nav>
 
+
+
+ 
  
   {% block body %}
   {% endblock body %}

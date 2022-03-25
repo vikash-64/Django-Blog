@@ -1,0 +1,14 @@
+<div class="row" id="oo">
+    <div class="fakeimg">        
+      {% if blog.cover %}       
+      <img src="{{ blog.cover.url }}" id="gv">
+      {% else %}
+      <!-- <img src="url or path to some your default image"> -->
+      <h4>Helllo vikash</h4>
+      {% endif %}</div>
+    <center><div id="h"><h2>{{blog.title}}</h2> </div></center>
+    <div><h5>Post Date: {{blog.date}}</h5></div>
+    <p>{{blog.description}}</p>
+    <h3>Author: {{blog.user_id}}</h3>
+    <div class="card">
+  

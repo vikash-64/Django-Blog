@@ -43,6 +43,7 @@ div {
        <center><h2>Edit Blog</h2></center>
     <form action="" method="POST" >
         {% csrf_token %}
+        {{edit_blog.media}}
         {{edit_blog.as_p}}
         <input type="submit" value="edit">
     </form>

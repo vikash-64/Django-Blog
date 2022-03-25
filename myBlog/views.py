@@ -1,10 +1,15 @@
 from django.shortcuts import render , redirect
-from django.contrib.auth.models import User 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User  
+from django.contrib.auth import authenticate, login , update_session_auth_hash
 from django.contrib import messages 
 from django.contrib.auth import logout
 from . models import Blog
+from .forms import Blog_Form
 from .forms import Edit_Blog
+from .forms import Contact_form
+from django.forms import ModelForm
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 
@@ -36,6 +41,11 @@ def register(request):
         else:
             user = User.objects.create_user( username=uname , email=email, password=psw)
             user.save()
+            subject = "About Registration"
+            message = f'Hi {uname} You has been register successfully on Code Blog' 
+            email_form = 'vikash400001@gmail.com'
+            rec_list = [email,]
+            send_mail(subject, message, email_form, rec_list)
             messages.success(request, "Registerd Successfully")
             return redirect('user_login')
      
@@ -52,7 +62,7 @@ def user_login(request):
             login(request , user)
             return redirect('/')
         else:
-            messages.warning(request, "Invalid credentials")
+            messages.warning(request, "Incorrect login credentials i.e. userHandle/email or password!")
             return redirect("/user_login")
     return render(request, 'login.html')  
 
@@ -62,15 +72,22 @@ def user_logout(request):
     return redirect("/")
 
 def post_blog(request):
-    
+    form = Blog_Form(request.POST , request.FILES)
     if request.method == 'POST' :
-        title = request.POST.get('title')
-        description = request.POST.get('subject')
-        img = request.FILES['image']
-        blog = Blog(title= title , description=description , user_id=request.user , cover=img)
-        blog.save()
-        messages.success(request, "Post Has been Submited Successfully ")
-        return redirect('/post_blog')
+
+        
+        if form.is_valid() :
+            post = form.save(commit=False)
+            post.user_id = request.user
+            post.save()
+            messages.success(request, "Post Has been Submited Successfully ")
+            return redirect('/')
+            
+        else:
+            form = Blog_Form()
+    
+    return render(request, 'post_blog.html', {'form' : form})
+
     
         
         
@@ -103,4 +120,43 @@ def edit(request , id):
     
     
     
+def contact_form(request):
     
+    form = Contact_form()
+    
+    if request.method == 'POST' :
+        form = Contact_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thanks for contact")
+            return redirect('/')
+   
+    return render(request, 'contact_form.html' , {'form':form} )
+  
+
+def change_password(request):
+    
+    
+    
+    if request.method == 'POST' :
+        
+       oldpsw =  request.POST.get('oldpassword')
+       newpsw = request.POST.get('newpassword')
+       u = User.objects.get(username=request.user.username)
+       
+       if u.check_password(oldpsw):
+           u.set_password(newpsw)
+           u.save()
+           update_session_auth_hash(request, request.u)
+           messages.success(request, "Password has been changed successfully")
+           return redirect('/')
+       else:
+           messages.success(request, "Invalid Password")
+           return redirect('/change_password')
+           
+        
+    
+    return render(request, 'change_password.html')
+
+
+

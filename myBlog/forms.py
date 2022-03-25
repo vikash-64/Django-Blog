@@ -1,10 +1,20 @@
 from django import forms
-
-
 from . models import Blog 
+from . models import Contact 
+from django import forms
+from .models import *
 
 
 
+
+class Blog_Form(forms.ModelForm):
+    
+    class Meta :
+        
+        model = Blog 
+        fields = (  'title' , 'description' , 'cover' , )
+
+ 
 class Edit_Blog(forms.ModelForm):
     
     class Meta :
@@ -13,9 +23,11 @@ class Edit_Blog(forms.ModelForm):
         fields = ( 'title' , 'description' )
         
         
-# class Post_Blog(forms.ModelForm):
+class Contact_form(forms.ModelForm):
     
-#     class Meta :
+
+    
+    class Meta :
         
-#         model = Blog 
-#         fields = ('title' , 'description' 'Img')
+        model = Contact 
+        fields = ('first_name' , 'last_name' , 'email' , 'phone' , 'message')
