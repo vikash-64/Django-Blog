@@ -306,11 +306,9 @@ body {
           <h5>Author: {{blog.user_id}}</h5><br>
           
           <!-- <div class="gv" ></div> -->
-          {% if blog.cover %}
-          <img src="{{ blog.cover.url }}" class="gv" ><br>
-          {% else %}
-          <h4>Image</h4><br>
-          {% endif %}
+    
+          <img src="{{blog.ImgLink}}" class="gv" ><br>
+        
           <br>
           <p>{{blog.description|safe}}</p>
           </div>
