@@ -8,11 +8,11 @@ from .models import *
 
 
 class Blog_Form(forms.ModelForm):
-    
+    ImgLink = forms.URLField( )
     class Meta :
         
         model = Blog 
-        fields = (  'title' , 'description' , 'cover' , )
+        fields = (  'title' , 'description' , 'ImgLink' , )
 
  
 class Edit_Blog(forms.ModelForm):

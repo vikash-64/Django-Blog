@@ -90,12 +90,12 @@ and is wrapped around the whole page content, except for the footer in this exam
   <!-- Blog entry -->
   {% for blog in blogs %}
   <div class="w3-card-4 w3-margin w3-white">
-    {% if blog.cover %}       
+    {% if blog.ImgLink %}   
     
-    <img src="{{ blog.cover.url }}" alt="Nature" style="width:100%">
+    <img src="{{blog.ImgLink}}" alt="Nature" style="width:100%">
     {% else %}
     <!-- <img src="url or path to some your default image"> -->
-    <h4>Helllo vikash</h4>
+    <h4>Helllo vikash
     {% endif %}
     
     <div class="w3-container">
@@ -130,7 +130,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   <img src="static/img/profile.jpg" style="width:100%">
     <div class="w3-container w3-white">
       <h4><b>Vikash Kr Upadhyay</b></h4>
-      <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+      <p>Hii I'm Vikash Kr Upadhyay from India , currently I'm a student of Information Technology (CSE)</p>
     </div>
   </div><hr>
   

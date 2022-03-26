@@ -14,7 +14,8 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     description = RichTextField(blank=True , null=True)
     date = models.DateTimeField(auto_now_add=True , null=True)
-    cover = models.ImageField(upload_to='images/' , blank=True , null=True)
+    
+    ImgLink = models.URLField(max_length = 500 , blank=True , null=True)
     def __str__(self):
         return self.title
 

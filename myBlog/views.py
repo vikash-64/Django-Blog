@@ -47,7 +47,7 @@ def register(request):
             rec_list = [email,]
             send_mail(subject, message, email_form, rec_list)
             messages.success(request, "Registerd Successfully")
-            return redirect('user_login')
+            return redirect('/')
      
     return render(request, 'register.html')
 
@@ -72,15 +72,17 @@ def user_logout(request):
     return redirect("/")
 
 def post_blog(request):
-    form = Blog_Form(request.POST , request.FILES)
+    form = Blog_Form(request.POST)
     if request.method == 'POST' :
 
         
         if form.is_valid() :
             post = form.save(commit=False)
             post.user_id = request.user
+            print(post.Image_URL)
             post.save()
             messages.success(request, "Post Has been Submited Successfully ")
+            
             return redirect('/')
             
         else:
