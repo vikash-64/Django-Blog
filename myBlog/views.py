@@ -79,7 +79,7 @@ def post_blog(request):
         if form.is_valid() :
             post = form.save(commit=False)
             post.user_id = request.user
-            print(post.Image_URL)
+            print(post.ImgLink)
             post.save()
             messages.success(request, "Post Has been Submited Successfully ")
             
